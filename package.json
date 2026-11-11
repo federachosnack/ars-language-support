@@ -1,0 +1,53 @@
+{
+  "name": "ars-language-support",
+  "displayName": "ARS Language Support (IPS/IDS Rules)",
+  "description": "Complete language support for .ars (Access & Validation Rules): syntax highlighting, live error diagnostics, IntelliSense, code snippets, and Outline structure.",
+  "version": "1.1.0",
+  "publisher": "federachosnak",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "ars",
+    "cybersecurity",
+    "ips",
+    "ids",
+    "firewall",
+    "rules"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "ars",
+        "aliases": [
+          "ARS (Access & Validation Rules)",
+          "ARS",
+          "ars"
+        ],
+        "extensions": [
+          ".ars"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "ars",
+        "scopeName": "source.ars",
+        "path": "./syntaxes/ars.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "ars",
+        "path": "./snippets/ars.snippets.json"
+      }
+    ]
+  }
+}

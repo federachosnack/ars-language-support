@@ -1,0 +1,56 @@
+{
+    "Define Access Rule (AR - IPS)": {
+        "prefix": ["defar", "ar"],
+        "body": [
+            "DEFINE AR \"${1:NomeRegola}\"",
+            "    CONDITION",
+            "        ${2:http.url is in blocca}",
+            "        ${3:http.host is in host_partial}",
+            "    ACTION",
+            "        ${4|http.redirect \"/\",tcp.redirect \"10.11.12.13:8888\",answer \"<h1>Richiesta bloccata</h1>\"|}",
+            ";"
+        ],
+        "description": "Crea una nuova Access Rule (IPS)"
+    },
+    "Define Validation Rule (VR - IDS Event)": {
+        "prefix": ["defvr", "vr"],
+        "body": [
+            "DEFINE VR ${1:Report1}",
+            "    CONDITION",
+            "        obs.event is ${2|net.send,net.recv|}",
+            "    ACTION",
+            "        REPORT ${3:runo} {",
+            "            CAT {",
+            "                \"Host  : \", http.host, \"\\n\",",
+            "                \"Url   : \", http.uri, \"\\n\",",
+            "                \"Method: \", http.method, \"\\n\",",
+            "                \"Header: \", http.header[\"0_FULL_DATA\"], \"\\n\",",
+            "                \"Data  : \", http.data[\"0_FULL_DATA\"]",
+            "            }",
+            "        }",
+            ";"
+        ],
+        "description": "Crea una Validation Rule (IDS) su obs.event net.send/net.recv"
+    },
+    "Define IPSET": {
+        "prefix": ["defipset", "ipset"],
+        "body": [
+            "DEFINE ipset ${1:serverip} = { ${2:*.*.*.*:*} };"
+        ],
+        "description": "Definisce un insieme di IP e porte (ipset)"
+    },
+    "Define URLSET": {
+        "prefix": ["defurlset", "urlset"],
+        "body": [
+            "DEFINE urlset ${1:blocca} = { ${2:/register, /register/*} };"
+        ],
+        "description": "Definisce un insieme di percorsi URL con wildcard (urlset)"
+    },
+    "Define Generic SET": {
+        "prefix": ["defset", "set"],
+        "body": [
+            "DEFINE set ${1:host_full} = { \"${2:lab1.cyber.com}\", \"${3:lab2.cyber.com}\" };"
+        ],
+        "description": "Definisce un insieme di stringhe (set)"
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "comments": {
+        "lineComment": "//",
+        "blockComment": [ "(*", "*)" ]
+    },
+    "brackets": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"]
+    ],
+    "autoClosingPairs": [
+        { "open": "{", "close": "}" },
+        { "open": "[", "close": "]" },
+        { "open": "(", "close": ")" },
+        { "open": "(*", "close": "*)", "notIn": ["string"] },
+        { "open": "\"", "close": "\"", "notIn": ["string"] },
+        { "open": "'", "close": "'", "notIn": ["string", "comment"] }
+    ],
+    "surroundingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        ["'", "'"]
+    ],
+    "folding": {
+        "markers": {
+            "start": "^\\s*DEFINE\\b|^\\s*\\(\\*",
+            "end": "^\\s*;|^\\s*\\*\\)"
+        }
+    },
+    "indentationRules": {
+        "increaseIndentPattern": "^\\s*(DEFINE\\s+(AR|VR)\\b.*|CONDITION\\b.*|ACTION\\b.*|.*\\{[^}]*)$",
+        "decreaseIndentPattern": "^\\s*(CONDITION\\b|ACTION\\b|;|\\})"
+    }
+}
