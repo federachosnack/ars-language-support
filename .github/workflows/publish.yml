@@ -18,4 +18,4 @@ jobs:
         with:
           node-version: 24
       - name: Publish Extension
-        run: npx @vscode/vsce@latest publish --no-dependencies
+        run: npx @vscode/vsce@latest publish --oidc --no-dependencies
